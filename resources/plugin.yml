@@ -1,0 +1,15 @@
+name: MineCart
+version: 1.0
+description: Plugin Para Gerenciar as Keys Vips e Cash Comparado Pelo Sistema MineCart
+author: [SnowRunescape]
+website: https://minecart.com.br
+
+main: br.com.minecart.MineCart
+
+commands:
+    MinhasKeys:
+        description: Lista Com Todas as Keys Vip Disponivel Para Ativar
+    ResgatarVip:
+        description: Resgatar Vip da MineCart
+    ResgatarCash:
+        description: Resgatar Cash da MineCart
