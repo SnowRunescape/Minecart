@@ -15,7 +15,10 @@ public class MainCommand implements CommandExecutor {
 	private Map<String, CommandExecutor> subCommandMap = Maps.newHashMap();
 	
 	public MainCommand(){
-		subCommandMap.put("reload", new ResgatarVipCommand());
+		subCommandMap.put("minhaskeys", new MinhasKeysCommand());
+		subCommandMap.put("ativar", new AtivarCommand());
+		subCommandMap.put("resgatarvip", new ResgatarVipCommand());
+		subCommandMap.put("resgatarcash", new ResgatarCashCommand());
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {

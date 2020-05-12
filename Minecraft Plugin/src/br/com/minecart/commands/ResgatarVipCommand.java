@@ -1,5 +1,8 @@
 package br.com.minecart.commands;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,10 +17,11 @@ import br.com.minecart.utilities.HttpRequest;
 import br.com.minecart.utilities.Messaging;
 
 public class ResgatarVipCommand implements CommandExecutor {
-
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-		String products = HttpRequest.UrlJsonRequest(MineCart.instance.MineCartAPI + "/getProducts?&username=" + sender.getName());
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+		Map<String, String> params = new LinkedHashMap<String, String>();
+		params.put("username", sender.getName());
+		
+		String products = HttpRequest.UrlJsonRequest(MineCart.instance.MineCartAPI + "/getProducts", params);
 		
 		if(products == null || products.isEmpty()){
 			sender.sendMessage(Messaging.format("error.nothing-products", true));
@@ -36,10 +40,11 @@ public class ResgatarVipCommand implements CommandExecutor {
 				for (JsonElement product : productsPlayer){
 					JsonObject productObj = product.getAsJsonObject();
 					
-					Integer id = productObj.get("id").getAsInt();
-					String item = productObj.get("item").getAsString();
+					String group = productObj.get("item").getAsString();
 					Integer quantity = productObj.get("quantity").getAsInt();
 					Integer duration = productObj.get("duration").getAsInt();
+					
+					for(int i = 1; i <= quantity; i++) MineCart.instance.keysManage.newKey(sender.getName(), group, duration);
 				}
 				
 				return true;

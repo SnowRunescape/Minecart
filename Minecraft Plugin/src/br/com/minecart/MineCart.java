@@ -1,15 +1,19 @@
 package br.com.minecart;
 
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
 import br.com.minecart.commands.MainCommand;
+import br.com.minecart.database.Database;
 
 public class MineCart extends JavaPlugin {
-	private HashMap<String, String> playersKeys = new HashMap<String, String>();
-	
 	public HashMap<String, String> ResourceMessage =  new HashMap<String, String>();
+	
+	public MineCartKeyManage keysManage = new MineCartKeyManage();
+	public Database database;
 	
 	public static MineCart instance;
 	
@@ -27,8 +31,28 @@ public class MineCart extends JavaPlugin {
 		this.getCommand("Ativar").setExecutor(new MainCommand());
 	}
 	
-	public String CREATE_KEY_VIP(){
-		
-		return null;
+	public static Database getDB() {
+		return instance.database;
 	}
+	
+    private boolean setupDatabase(){
+        try {
+            database = new Database(getConfig().getConfigurationSection("database"));
+        } catch (ClassNotFoundException exception) {
+            getLogger().log(Level.SEVERE, String.format("Unable to register JDCB driver: %s", exception.getMessage()));
+            return false;
+        } catch (SQLException exception) {
+            getLogger().log(Level.SEVERE, String.format("Unable to connect to SQL server: %s", exception.getMessage()));
+            return false;
+        }
+
+        try {
+            database.createTables();
+        } catch (Exception exception) {
+            getLogger().log(Level.SEVERE, String.format("An exception was thrown while attempting to create tables: %s", exception.getMessage()));
+            return false;
+        }
+
+        return true;
+    }
 }
