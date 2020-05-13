@@ -1,6 +1,8 @@
 package br.com.minecart;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
@@ -19,6 +21,18 @@ public class MineCartKeyManage {
 		return null;
 	}
 	
+	public ArrayList<String> getPlayerKeys(Player player){
+		ArrayList<String> keys = new ArrayList<String>();
+		
+		for(Entry<String, MineCartKey> minecartKey : minecartKeys.entrySet()){
+			if(player.getName().equalsIgnoreCase(minecartKey.getValue().getOwner())){
+				keys.add(minecartKey.getKey());
+			}
+		}
+		
+		return keys;
+	}
+	
 	public Boolean useKey(Player player, String key){
 		String cmd = MineCart.instance.getConfig().getString("cmd.cmd_active_vip");
 		
@@ -30,6 +44,8 @@ public class MineCartKeyManage {
 			cmd = cmd.replace("{player.name}", player.getName());
 			
 			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
+			
+			this.minecartKeys.remove(key);
 			
 			return true;
 		}

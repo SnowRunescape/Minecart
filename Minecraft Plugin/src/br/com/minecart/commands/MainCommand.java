@@ -37,6 +37,7 @@ public class MainCommand implements CommandExecutor {
 			 
 		        if(!hasPermission(player, subCommand)){
 		            player.sendMessage(Messaging.format("error.insufficient-permissions", true));
+		            
 		            return true;
 		        }
 
@@ -52,7 +53,9 @@ public class MainCommand implements CommandExecutor {
         if(permissions == null) return true;
 
         for(String permission : permissions.value()){
-            if(bukkitPlayer.hasPermission(permission)) return true;
+            if(bukkitPlayer.hasPermission(permission)){
+            	return true;
+            }
         }
 
         return false;
