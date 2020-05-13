@@ -1,23 +1,23 @@
 package br.com.minecart;
 
+import java.io.File;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.logging.Level;
 
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import br.com.minecart.commands.MainCommand;
 import br.com.minecart.database.Database;
 
 public class MineCart extends JavaPlugin {
-	public HashMap<String, String> ResourceMessage =  new HashMap<String, String>();
-	
-	public MineCartKeyManage keysManage = new MineCartKeyManage();
+	public YamlConfiguration ResourceMessage;
+	public MineCartKeyManage keysManage;
 	public Database database;
 	
 	public static MineCart instance;
 	
-	public String MineCartAutorization = "MineCart.TEDSADAdadsad1D5d15D1d8as1d8D18d18Dd";
+	public String MineCartAutorization;
 	public String MineCartServerToken;
 	
 	public final String MineCartAPI = "https://minecart.com.br/api";
@@ -25,10 +25,21 @@ public class MineCart extends JavaPlugin {
 	public void onEnable(){
 		instance = this;
 		
-		this.getCommand("ResgatarVip").setExecutor(new MainCommand());
-		this.getCommand("ResgatarCash").setExecutor(new MainCommand());
-		this.getCommand("MinhasKeys").setExecutor(new MainCommand());
-		this.getCommand("Ativar").setExecutor(new MainCommand());
+		this.keysManage = new MineCartKeyManage();
+		
+		if(!new File(getDataFolder(), "config.yml").exists()) saveDefaultConfig();
+		
+		this.loadMessages();
+		
+		this.setupDatabase();
+		
+		this.MineCartAutorization = getConfig().getString("MineCart.ShopKey", "");
+		this.MineCartServerToken = getConfig().getString("MineCart.ShopServerKey", "");
+		
+		getCommand("ResgatarVip").setExecutor(new MainCommand());
+		getCommand("ResgatarCash").setExecutor(new MainCommand());
+		getCommand("MinhasKeys").setExecutor(new MainCommand());
+		getCommand("Ativar").setExecutor(new MainCommand());
 	}
 	
 	public static Database getDB() {
@@ -54,5 +65,13 @@ public class MineCart extends JavaPlugin {
         }
 
         return true;
+    }
+    
+    private void loadMessages(){
+    	File resourceMessage = new File(getDataFolder(), "messages.yml");
+    	
+    	if(!resourceMessage.exists()) saveResource("messages.yml", false);
+    	
+    	this.ResourceMessage = YamlConfiguration.loadConfiguration(resourceMessage);
     }
 }

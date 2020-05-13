@@ -1,2 +1,7 @@
-error:
+success:
+  active-key: '&7Ocorreu um erro ao ativar o &6&lVIP&7, tente novamente!'
 
+error:
+  inform-key: '&7Informe a &9&lKEY&7. &c/Ativar <key>'
+  active-key: '&7Ocorreu um erro ao ativar o &6&lVIP&7, tente novamente!'
+  does-not-exist-key: ''

@@ -1,3 +1,18 @@
 # MineCart 1.0
-# Plugin feito por SnowRunescape
-# Site https://snowdev.com.br
+# Plugin Feito Pela SnowDev
+# Site https://minecart.com.br
+
+MineCart:
+  ShopKey: minecart_shop_key_api
+  ShopServerKey: minecart.server_key_api
+
+database:
+  hostname: localhost
+  port: 3306
+  username: username
+  password: password
+  database: database
+
+cmd:
+  cmd_active_vip: gerarvip {key.group} {key.duration} {player.name}
+  cmd_active_cash: cash give {player.name} {quantity}

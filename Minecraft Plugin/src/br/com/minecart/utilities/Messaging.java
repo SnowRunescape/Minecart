@@ -9,8 +9,8 @@ public class Messaging {
 		 if(message == null || message.isEmpty()) return "";
 		 
 		 if(getConfigMessage){
-			 if(MineCart.instance.ResourceMessage.containsKey(message)){
-				 message = MineCart.instance.ResourceMessage.get(message);
+			 if(MineCart.instance.ResourceMessage.getString(message) != null){
+				 message = MineCart.instance.ResourceMessage.getString(message);
 			 } else {
 				 message = "§c[MineCart] " + message + " Not Found.";
 			 }

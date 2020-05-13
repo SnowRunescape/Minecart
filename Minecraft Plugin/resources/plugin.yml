@@ -9,6 +9,8 @@ main: br.com.minecart.MineCart
 commands:
     MinhasKeys:
         description: Lista Com Todas as Keys Vip Disponivel Para Ativar
+    Ativar:
+        description: Ativar Algum Vip Resgatado da MineCart
     ResgatarVip:
         description: Resgatar Vip da MineCart
     ResgatarCash:

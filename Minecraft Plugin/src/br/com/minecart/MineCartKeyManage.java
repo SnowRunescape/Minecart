@@ -3,6 +3,7 @@ package br.com.minecart;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import br.com.minecart.storage.SQLStorage;
@@ -18,8 +19,22 @@ public class MineCartKeyManage {
 		return null;
 	}
 	
-	public void useKey(Player player, String key){
+	public Boolean useKey(Player player, String key){
+		String cmd = MineCart.instance.getConfig().getString("cmd.cmd_active_vip");
 		
+		MineCartKey minecartKey = this.getKey(key);
+		
+		if(minecartKey != null){
+			cmd = cmd.replace("{key.group}", minecartKey.getGrup());
+			cmd = cmd.replace("{key.duration}", String.valueOf(minecartKey.getDuration()));
+			cmd = cmd.replace("{player.name}", player.getName());
+			
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	public void newKey(String owner, String group, Integer duration){
