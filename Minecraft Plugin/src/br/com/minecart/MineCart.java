@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,22 +26,26 @@ public class MineCart extends JavaPlugin {
 	public void onEnable(){
 		instance = this;
 		
+		if(!this.setupDatabase()){
+			Bukkit.getPluginManager().disablePlugin(this);
+			
+			return;
+		}
+		
 		this.keysManage = new MineCartKeyManage();
 		
 		if(!new File(getDataFolder(), "config.yml").exists()) saveDefaultConfig();
 		
 		this.loadMessages();
 		
-		this.setupDatabase();
-		
 		this.MineCartAutorization = getConfig().getString("MineCart.ShopKey", "");
 		this.MineCartServerToken = getConfig().getString("MineCart.ShopServerKey", "");
 		
-		getCommand("ResgatarVip").setExecutor(new MainCommand());
-		getCommand("ResgatarCash").setExecutor(new MainCommand());
-		getCommand("MinhasKeys").setExecutor(new MainCommand());
-		getCommand("Ativar").setExecutor(new MainCommand());
-		getCommand("MineCart").setExecutor(new MainCommand());
+		getCommand("resgatarvip").setExecutor(new MainCommand());
+		getCommand("resgatarcash").setExecutor(new MainCommand());
+		getCommand("minhaskeys").setExecutor(new MainCommand());
+		getCommand("ativar").setExecutor(new MainCommand());
+		getCommand("minecart").setExecutor(new MainCommand());
 	}
 	
 	public static Database getDB() {

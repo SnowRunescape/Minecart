@@ -15,6 +15,10 @@ public class MineCartKeyManage {
 	
 	private SQLStorage SQLStorage = new SQLStorage();
 	
+	public MineCartKeyManage(){
+		this.loadMineCartKeys();
+	}
+	
 	public MineCartKey getKey(String key){
 		if(minecartKeys.containsKey(key)) return minecartKeys.get(key);
 		
@@ -43,11 +47,13 @@ public class MineCartKeyManage {
 			cmd = cmd.replace("{key.duration}", String.valueOf(minecartKey.getDuration()));
 			cmd = cmd.replace("{player.name}", player.getName());
 			
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
-			
-			this.minecartKeys.remove(key);
-			
-			return true;
+			if(this.SQLStorage.deleteMineCartKey(minecartKey)){
+				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
+				
+				this.minecartKeys.remove(key);
+				
+				return true;
+			}
 		}
 		
 		return false;
@@ -65,6 +71,10 @@ public class MineCartKeyManage {
 		}
 		
 		return false;
+	}
+	
+	public void loadMineCartKeys(){
+		this.minecartKeys = this.SQLStorage.loadAllMineCartKeys();
 	}
 	
 	private String GEN_RANDOM_KEY(){

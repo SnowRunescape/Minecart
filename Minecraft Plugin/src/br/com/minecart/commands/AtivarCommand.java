@@ -42,7 +42,10 @@ public class AtivarCommand implements CommandExecutor {
 				sender.sendMessage(Messaging.format("error.active-key", true));
 			}
 		} else {
-			player.kickPlayer(Messaging.format("error.invalid-key", true));
+			String kickMessage = Messaging.format("error.invalid-key", true);
+			kickMessage = kickMessage.replace("\\n", "\n");
+			
+			player.kickPlayer(kickMessage);
 		}
 		
 		return false;
