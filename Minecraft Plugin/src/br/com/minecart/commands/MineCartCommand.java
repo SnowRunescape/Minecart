@@ -36,7 +36,11 @@ public class MineCartCommand implements CommandExecutor {
 					return true;
 				}
 				
-				MineCart.instance.keysManage.newKey(playerName, groupVIP, durationVIP);
+				if(MineCart.instance.keysManage.newKey(playerName, groupVIP, durationVIP)){
+					player.sendMessage(String.format("§b[MineCart] §cVIP %s de %s DIAS foi gerado com sucesso para o jogador §6%s§c.", groupVIP, durationVIP, playerName));
+				} else {
+					player.sendMessage("§b[MineCart] §cAconteceu um erro ao gerar o §6§lVIP§c, tente novamente!");
+				}
 				
 				return true;
 			} else {

@@ -12,13 +12,14 @@ import com.google.common.collect.Maps;
 import br.com.minecart.utilities.Messaging;
 
 public class MainCommand implements CommandExecutor {
-	private Map<String, CommandExecutor> subCommandMap = Maps.newHashMap();
+	private Map<String, CommandExecutor> CommandMap = Maps.newHashMap();
 	
 	public MainCommand(){
-		subCommandMap.put("minhaskeys", new MinhasKeysCommand());
-		subCommandMap.put("ativar", new AtivarCommand());
-		subCommandMap.put("resgatarvip", new ResgatarVipCommand());
-		subCommandMap.put("resgatarcash", new ResgatarCashCommand());
+		CommandMap.put("minecart", new MineCartCommand());
+		CommandMap.put("minhaskeys", new MinhasKeysCommand());
+		CommandMap.put("ativar", new AtivarCommand());
+		CommandMap.put("resgatarvip", new ResgatarVipCommand());
+		CommandMap.put("resgatarcash", new ResgatarCashCommand());
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -29,19 +30,18 @@ public class MainCommand implements CommandExecutor {
         }
 		
 		Player player = (Player) sender;
+		commandLabel = commandLabel.toLowerCase();
 		
-		String subCommandName = args[0].toLowerCase();
-		
-		 if(subCommandMap.containsKey(subCommandName)){
-			 CommandExecutor subCommand = subCommandMap.get(subCommandName);
+		 if(CommandMap.containsKey(commandLabel)){
+			 CommandExecutor command = CommandMap.get(commandLabel);
 			 
-		        if(!hasPermission(player, subCommand)){
+		        if(!hasPermission(player, command)){
 		            player.sendMessage(Messaging.format("error.insufficient-permissions", true));
 		            
 		            return true;
 		        }
 
-		        return subCommand.onCommand(sender, cmd, commandLabel, args);
+		        return command.onCommand(sender, cmd, commandLabel, args);
 		 }
 		
 		return false;

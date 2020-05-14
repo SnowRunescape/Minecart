@@ -9,7 +9,7 @@ import br.com.minecart.MineCartKey;
 import br.com.minecart.database.Database;
 
 public class SQLStorage {
-	public boolean saveMineCartKey(MineCartKey key){
+	public boolean saveMineCartKey(MineCartKey minecartKey){
 		Database database = MineCart.getDB();
 		
 		Connection connection = database.getConnection();
@@ -17,20 +17,19 @@ public class SQLStorage {
         
         try {
             StringBuilder queryBuilder = new StringBuilder();
-            queryBuilder.append("UPDATE `minecart_keys` SET ");
-            queryBuilder.append("`score` = ?, `games_played` = ?, ");
-            queryBuilder.append("`games_won` = ?, `kills` = ?, ");
-            queryBuilder.append("`deaths` = ?, `last_seen` = NOW() ");
-            queryBuilder.append("WHERE `player_name` = ?;");
-
-            preparedStatement = connection.prepareStatement(queryBuilder.toString());
-//            preparedStatement.setInt(1, gamePlayer.getScore());
-//            preparedStatement.setInt(2, gamePlayer.getGamesPlayed());
-//            preparedStatement.setInt(3, gamePlayer.getGamesWon());
-//            preparedStatement.setInt(4, gamePlayer.getKills());
-//            preparedStatement.setInt(5, gamePlayer.getDeaths());
-//            preparedStatement.setString(6, gamePlayer.getName());
-            preparedStatement.executeUpdate();
+            
+            queryBuilder.append("INSERT INTO `minecart` (`key_vip`, `vip_group`, `vip_duration`, `owner`) VALUES (?, ?, ?, ?)");
+            
+			preparedStatement = connection.prepareStatement(queryBuilder.toString());
+			
+			preparedStatement.setString(1, minecartKey.getCode());
+			preparedStatement.setString(2, minecartKey.getGrup());
+			preparedStatement.setInt(3, minecartKey.getDuration());
+			preparedStatement.setString(4, minecartKey.getOwner());
+			
+			preparedStatement.executeUpdate();
+			
+			return true;
         } catch (final SQLException sqlException) {
         	sqlException.printStackTrace();
         }

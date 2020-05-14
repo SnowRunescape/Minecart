@@ -53,12 +53,18 @@ public class MineCartKeyManage {
 		return false;
 	}
 	
-	public void newKey(String owner, String group, Integer duration){
-		MineCartKey key = new MineCartKey(owner, group, duration);
+	public Boolean newKey(String owner, String group, Integer duration){
+		String keyCode = this.GEN_RANDOM_KEY();
+		
+		MineCartKey key = new MineCartKey(owner, keyCode, group, duration);
 		
 		if(this.SQLStorage.saveMineCartKey(key)){
-			minecartKeys.put(this.GEN_RANDOM_KEY(), key);
+			minecartKeys.put(keyCode, key);
+			
+			return true;
 		}
+		
+		return false;
 	}
 	
 	private String GEN_RANDOM_KEY(){
@@ -66,7 +72,7 @@ public class MineCartKeyManage {
 		
 		String key = "";
 		
-		while(minecartKeys.containsKey(key)){
+		while((!minecartKeys.containsKey(key)) && (key == "")){
 			key = "";
 			
 			for(int i = 0; i < 10; i++) key += gerador.nextInt(10);

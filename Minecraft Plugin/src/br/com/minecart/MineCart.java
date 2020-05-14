@@ -40,6 +40,7 @@ public class MineCart extends JavaPlugin {
 		getCommand("ResgatarCash").setExecutor(new MainCommand());
 		getCommand("MinhasKeys").setExecutor(new MainCommand());
 		getCommand("Ativar").setExecutor(new MainCommand());
+		getCommand("MineCart").setExecutor(new MainCommand());
 	}
 	
 	public static Database getDB() {
@@ -49,17 +50,17 @@ public class MineCart extends JavaPlugin {
     private boolean setupDatabase(){
         try {
             database = new Database(getConfig().getConfigurationSection("database"));
-        } catch (ClassNotFoundException exception) {
+        } catch (ClassNotFoundException exception){
             getLogger().log(Level.SEVERE, String.format("Unable to register JDCB driver: %s", exception.getMessage()));
             return false;
-        } catch (SQLException exception) {
+        } catch (SQLException exception){
             getLogger().log(Level.SEVERE, String.format("Unable to connect to SQL server: %s", exception.getMessage()));
             return false;
         }
 
         try {
             database.createTables();
-        } catch (Exception exception) {
+        } catch (Exception exception){
             getLogger().log(Level.SEVERE, String.format("An exception was thrown while attempting to create tables: %s", exception.getMessage()));
             return false;
         }
