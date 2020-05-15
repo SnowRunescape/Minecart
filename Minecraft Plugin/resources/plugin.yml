@@ -7,6 +7,8 @@ website: https://minecart.com.br
 main: br.com.minecart.MineCart
 
 commands:
+    MineCart:
+        description: Lista de comandos do administrador
     MinhasKeys:
         description: Lista Com Todas as Keys Vip Disponivel Para Ativar
     Ativar:

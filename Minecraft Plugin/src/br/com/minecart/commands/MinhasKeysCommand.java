@@ -33,7 +33,7 @@ public class MinhasKeysCommand implements CommandExecutor {
 				player.sendMessage(Messaging.format(msg, false));
 			}
 		} else {
-			player.sendMessage(Messaging.format("error.inform-key", true));
+			player.sendMessage(Messaging.format("error.player-dont-have-key", true));
 		}
 		
 		return false;

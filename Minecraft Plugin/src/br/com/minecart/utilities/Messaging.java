@@ -12,7 +12,7 @@ public class Messaging {
 			 if(MineCart.instance.ResourceMessage.getString(message) != null){
 				 message = MineCart.instance.ResourceMessage.getString(message);
 			 } else {
-				 message = "§c[MineCart] " + message + " Not Found.";
+				 message = "§b[MineCart] §c" + message + " Not Found.";
 			 }
 		 }
 		 

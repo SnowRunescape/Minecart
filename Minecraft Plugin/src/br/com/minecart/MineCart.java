@@ -27,6 +27,8 @@ public class MineCart extends JavaPlugin {
 		instance = this;
 		
 		if(!this.setupDatabase()){
+			getLogger().log(Level.SEVERE, "Aconteceu um erro ao iniciar o banco de dados, verifique as credenciais e tente novamente!");
+			
 			Bukkit.getPluginManager().disablePlugin(this);
 			
 			return;

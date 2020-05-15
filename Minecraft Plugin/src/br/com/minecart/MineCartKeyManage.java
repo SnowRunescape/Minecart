@@ -62,6 +62,8 @@ public class MineCartKeyManage {
 	public Boolean newKey(String owner, String group, Integer duration){
 		String keyCode = this.GEN_RANDOM_KEY();
 		
+		owner = owner.toLowerCase();
+		
 		MineCartKey key = new MineCartKey(owner, keyCode, group, duration);
 		
 		if(this.SQLStorage.saveMineCartKey(key)){

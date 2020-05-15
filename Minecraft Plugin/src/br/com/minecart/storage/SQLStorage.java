@@ -74,7 +74,7 @@ public class SQLStorage {
 			preparedStatement.setInt(3, minecartKey.getDuration());
 			preparedStatement.setString(4, minecartKey.getOwner());
 			
-			return preparedStatement.execute();
+			return preparedStatement.executeUpdate() > 0 ? true : false ;
         } catch (final SQLException sqlException) {
         	sqlException.printStackTrace();
         }

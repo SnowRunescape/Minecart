@@ -13,9 +13,9 @@ public class MineCartCommand implements CommandExecutor {
 		Player player = (Player) sender;
 		
 		if(args.length == 0){
-			player.sendMessage("§b[MineCart] §fLista de comandos:");
-			player.sendMessage("§a/MineCart GerarVIP §6- Gerar um §6§lVIP §6para um jogador");
-			player.sendMessage("§a/MineCart Reload §6- Recarregar as configurações e o banco de dados");
+			player.sendMessage("§b[MineCart] §7Lista de comandos:");
+			player.sendMessage("§a/Minecart GerarVIP §7- Gerar um §6§lVIP §7para um jogador");
+			player.sendMessage("§a/Minecart Reload §7- Recarregar as configurações e o banco de dados");
 			
 			return true;
 		}
@@ -24,7 +24,14 @@ public class MineCartCommand implements CommandExecutor {
 			if(args.length == 4){
 				String playerName = args[1];
 				String groupVIP = args[2];
-				Integer durationVIP = Integer.valueOf(args[3]);
+				
+				Integer durationVIP = 0;
+				
+				try {
+					 durationVIP = Integer.valueOf(args[3]);
+				} catch(NumberFormatException e){
+					
+		        }
 				
 				if(!playerName.matches("[a-zA-Z0-9_]+")){
 					player.sendMessage("§b[MineCart] §cO player informado é invalido");
@@ -37,7 +44,7 @@ public class MineCartCommand implements CommandExecutor {
 				}
 				
 				if(MineCart.instance.keysManage.newKey(playerName, groupVIP, durationVIP)){
-					player.sendMessage(String.format("§b[MineCart] §cVIP %s de %s DIAS foi gerado com sucesso para o jogador §6%s§c.", groupVIP, durationVIP, playerName));
+					player.sendMessage(String.format("§b[MineCart] §6§lVIP %s §7de §a%s DIAS §7foi gerado com sucesso para o jogador §6%s§7.", groupVIP, durationVIP, playerName));
 				} else {
 					player.sendMessage("§b[MineCart] §cAconteceu um erro ao gerar o §6§lVIP§c, tente novamente!");
 				}
