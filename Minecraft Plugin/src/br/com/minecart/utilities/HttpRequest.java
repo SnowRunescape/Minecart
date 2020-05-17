@@ -42,7 +42,7 @@ public class HttpRequest {
 	        connection.setRequestProperty("User-Agent", "MineCart");
 	        connection.setRequestProperty("Content-Type", "application/json");
 	        connection.addRequestProperty("Authorization", MineCart.instance.MineCartAutorization);
-	        connection.addRequestProperty("ServerToken", MineCart.instance.MineCartServerToken);
+	        connection.addRequestProperty("ShopServer", MineCart.instance.MineCartShopServer);
 	        
 	        connection.setUseCaches(false);
 	        

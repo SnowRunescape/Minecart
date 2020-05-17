@@ -75,7 +75,11 @@ public class ResgatarVipCommand implements CommandExecutor {
 				}
 				
 				if(getAnyoneProdct){
-					player.sendMessage(Messaging.format("success.redeem-vip", true));
+					String msg = MineCart.instance.ResourceMessage.getString("success.redeem-vip");
+					
+					msg = msg.replace("{player.name}", player.getName());
+					
+					player.sendMessage(Messaging.format(msg, false));
 					
 					return true;
 				}

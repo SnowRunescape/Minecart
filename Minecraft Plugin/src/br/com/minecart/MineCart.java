@@ -19,7 +19,7 @@ public class MineCart extends JavaPlugin {
 	public static MineCart instance;
 	
 	public String MineCartAutorization;
-	public String MineCartServerToken;
+	public String MineCartShopServer;
 	
 	public final String MineCartAPI = "https://minecart.com.br/api";
 	
@@ -41,7 +41,7 @@ public class MineCart extends JavaPlugin {
 		this.loadMessages();
 		
 		this.MineCartAutorization = getConfig().getString("MineCart.ShopKey", "");
-		this.MineCartServerToken = getConfig().getString("MineCart.ShopServerKey", "");
+		this.MineCartShopServer = getConfig().getString("MineCart.ShopServer", "");
 		
 		getCommand("resgatarvip").setExecutor(new MainCommand());
 		getCommand("resgatarcash").setExecutor(new MainCommand());

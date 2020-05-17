@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import br.com.minecart.MineCart;
 import br.com.minecart.MineCartKey;
@@ -20,6 +21,14 @@ public class AtivarCommand implements CommandExecutor {
 			
 			return false;
 		}
+		
+		for (ItemStack item : player.getInventory().getContents()){
+            if(item != null) {
+            	player.sendMessage(Messaging.format("error.clean-inventory", true));
+            	
+                return false;
+            }
+        }
 		
 		MineCartKey minecartKey = MineCart.instance.keysManage.getKey(args[0]);
 		
