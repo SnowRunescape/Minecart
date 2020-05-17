@@ -46,6 +46,9 @@ public class HttpRequest {
 	        
 	        connection.setUseCaches(false);
 	        
+	        connection.setConnectTimeout(5000);
+	        connection.setReadTimeout(5000);
+	        
 	        if(urlParameters != null){
 	        	connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); 
 	        	connection.setRequestMethod("POST");

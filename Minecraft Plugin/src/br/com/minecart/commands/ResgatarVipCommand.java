@@ -25,7 +25,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 		try {
 			if(!MineCart.getDB().checkConnection()) throw new Exception("Error connection database!");
 		} catch(Exception e){
-			player.sendMessage(Messaging.format("error.internal-error", true));
+			player.sendMessage(Messaging.format("error.internal-error", true, true));
 			
 			return true;
 		}
@@ -38,7 +38,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 		String products = HttpRequest.UrlJsonRequest(MineCart.instance.MineCartAPI + "/getProducts", params);
 		
 		if(products == null || products.isEmpty()){
-			player.sendMessage(Messaging.format("error.nothing-products", true));
+			player.sendMessage(Messaging.format("error.nothing-products", true, true));
 			
 			return true;
 		}
@@ -67,7 +67,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 							msg = msg.replace("{key.group}", group);
 							msg = msg.replace("{key.duration}", String.valueOf(quantity));
 							
-							player.sendMessage(Messaging.format(msg, false));
+							player.sendMessage(Messaging.format(msg, true, false));
 							
 							LOGStorage.resgatarVIP("[ERROR] Ocorreu um erro ao dar o VIP ( "+ group +" ) com duração de ( " + duration + " ) DIAS.");
 						}
@@ -79,7 +79,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 					
 					msg = msg.replace("{player.name}", player.getName());
 					
-					player.sendMessage(Messaging.format(msg, false));
+					player.sendMessage(Messaging.format(msg, true, false));
 					
 					return true;
 				}
@@ -88,7 +88,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 			
 		}
 		
-		player.sendMessage(Messaging.format("error.nothing-products", true));
+		player.sendMessage(Messaging.format("error.nothing-products", true, true));
 		
 		return false;
 	}

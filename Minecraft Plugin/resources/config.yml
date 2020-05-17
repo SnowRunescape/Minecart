@@ -6,6 +6,8 @@ MineCart:
   ShopKey: 'minecart_shop_key_api'
   ShopServer: 'minecart_server_name'
 
+prefix: '&b[MineCart] '
+
 database:
   hostname: 'localhost'
   port: 3306

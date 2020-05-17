@@ -17,14 +17,14 @@ public class AtivarCommand implements CommandExecutor {
 		Player player = (Player) sender;
 		
 		if(args.length == 0){
-			player.sendMessage(Messaging.format("error.inform-key", true));
+			player.sendMessage(Messaging.format("error.inform-key", true, true));
 			
 			return false;
 		}
 		
 		for (ItemStack item : player.getInventory().getContents()){
             if(item != null) {
-            	player.sendMessage(Messaging.format("error.clean-inventory", true));
+            	player.sendMessage(Messaging.format("error.clean-inventory", true, true));
             	
                 return false;
             }
@@ -43,15 +43,15 @@ public class AtivarCommand implements CommandExecutor {
 					msgTemp = msgTemp.replace("{key.duration}", String.valueOf(minecartKey.getDuration()));
 					msgTemp = msgTemp.replace("{player.name}", player.getName());
 					
-					player.sendMessage(Messaging.format(msgTemp, false));
+					player.sendMessage(Messaging.format(msgTemp, false, false));
 				}
 				
 				return true;
 			} else {
-				sender.sendMessage(Messaging.format("error.active-key", true));
+				sender.sendMessage(Messaging.format("error.active-key", true, true));
 			}
 		} else {
-			String kickMessage = Messaging.format("error.invalid-key", true);
+			String kickMessage = Messaging.format("error.invalid-key", true, true);
 			kickMessage = kickMessage.replace("\\n", "\n");
 			
 			player.kickPlayer(kickMessage);

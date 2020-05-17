@@ -17,7 +17,7 @@ public class MinhasKeysCommand implements CommandExecutor {
 		
 		ArrayList<String> minecartKeys = MineCart.instance.keysManage.getPlayerKeys(player);
 		
-		player.sendMessage(Messaging.format("success.player-list-keys-title", true));
+		player.sendMessage(Messaging.format("success.player-list-keys-title", false, true));
 		player.sendMessage("");
 		
 		if(minecartKeys.size() != 0){
@@ -30,10 +30,10 @@ public class MinhasKeysCommand implements CommandExecutor {
 				msg = msg.replace("{key.group}", minecartKey.getGrup());
 				msg = msg.replace("{key.duration}", String.valueOf(minecartKey.getDuration()));
 				
-				player.sendMessage(Messaging.format(msg, false));
+				player.sendMessage(Messaging.format(msg, false, false));
 			}
 		} else {
-			player.sendMessage(Messaging.format("error.player-dont-have-key", true));
+			player.sendMessage(Messaging.format("error.player-dont-have-key", false, true));
 		}
 		
 		return false;

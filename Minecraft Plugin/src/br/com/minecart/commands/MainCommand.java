@@ -24,7 +24,7 @@ public class MainCommand implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if(!(sender instanceof Player)){
-            sender.sendMessage(Messaging.format("error.player-only", true));
+            sender.sendMessage(Messaging.format("error.player-only", true, true));
             
             return true;
         }
@@ -36,7 +36,7 @@ public class MainCommand implements CommandExecutor {
 			 CommandExecutor command = CommandMap.get(commandLabel);
 			 
 		        if(!hasPermission(player, command)){
-		            player.sendMessage(Messaging.format("error.insufficient-permissions", true));
+		            player.sendMessage(Messaging.format("error.insufficient-permissions", true, true));
 		            
 		            return true;
 		        }
