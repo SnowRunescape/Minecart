@@ -1,11 +1,14 @@
 success:
   player-list-keys-title: '&6Central de keys VIPs:'
   player-list-keys-key: '&b{key.code} - &6&l{key.group} &a&l{key.duration} DIAS'
+  redeem-vip: '&7Parabéns &6{player.name}&7, para ver seus &6&lVIPS &7digite &c/MinhasKeys&7.'
   active-key:
   - '&7Parabens &6{player.name}&7, você ativou um &6&lVIP&7!'
   - '&7Você ativou o &6&lVIP {key.group} &7com duração de &a&l{key.duration} DIAS&7.'
 
 error:
+  internal-error: '&cOcorreu um erro interno, entre em contato com um administrador!'
+  redeem-vip: '&7Ocorreu um erro ao obter o &6&lVIP {key.group} &7com duração de &a&l{key.duration} DIAS&7, entre em contato com a administração!'
   player-only: '&cApenas Jogadores podem utilizar este comando!'
   player-dont-have-key: '&cVocê não possui nenhuma KEY.'
   nothing-products: '&cVocê não possui nenhum &6&lVIP &cpara ser resgatado!'
