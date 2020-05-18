@@ -17,4 +17,4 @@ database:
 
 cmd:
   cmd_active_vip: 'gerarvip {key.group} {key.duration} {player.name}'
-  cmd_active_cash: 'cash give {player.name} {quantity}'
+  cmd_active_cash: 'cash give {player.name} {cash.quantity}'

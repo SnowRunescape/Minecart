@@ -31,6 +31,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 		}
 		
 		Map<String, String> params = new LinkedHashMap<String, String>();
+		params.put("type", "MineCart.VIP");
 		params.put("username", player.getName());
 		
 		Boolean getAnyoneProdct = false;
@@ -38,7 +39,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 		String products = HttpRequest.UrlJsonRequest(MineCart.instance.MineCartAPI + "/getProducts", params);
 		
 		if(products == null || products.isEmpty()){
-			player.sendMessage(Messaging.format("error.nothing-products", true, true));
+			player.sendMessage(Messaging.format("error.nothing-products-vip", true, true));
 			
 			return true;
 		}
@@ -88,7 +89,7 @@ public class ResgatarVipCommand implements CommandExecutor {
 			
 		}
 		
-		player.sendMessage(Messaging.format("error.nothing-products", true, true));
+		player.sendMessage(Messaging.format("error.nothing-products-vip", true, true));
 		
 		return false;
 	}

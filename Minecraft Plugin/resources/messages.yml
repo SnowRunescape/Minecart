@@ -2,6 +2,7 @@ success:
   player-list-keys-title: '&6Central de keys VIPs:'
   player-list-keys-key: '&b{key.code} - &6&l{key.group} &a&l{key.duration} DIAS'
   redeem-vip: '&7Parabéns &6{player.name}&7, para ver seus &6&lVIPS &7digite &c/MinhasKeys&7.'
+  redeem-vip: '&7Parabéns &6{player.name}&7, para ver seu saudo de &6&lCASH &7digite &c/Cash&7.'
   active-key:
   - '&7Parabens &6{player.name}&7, você ativou um &6&lVIP&7!'
   - '&7Você ativou o &6&lVIP {key.group} &7com duração de &a&l{key.duration} DIAS&7.'
@@ -12,7 +13,8 @@ error:
   clean-inventory: '&7Limpe o inventario para poder executar este comando.'
   player-only: '&cApenas Jogadores podem utilizar este comando!'
   player-dont-have-key: '&cVocê não possui nenhuma KEY.'
-  nothing-products: '&cVocê não possui nenhum &6&lVIP &cpara ser resgatado!'
+  nothing-products-vip: '&cVocê não possui nenhum &6&lVIP &cpara ser resgatado!'
+  nothing-products-cash: '&cVocê não possui &6&lCASH &cpara ser resgatado!'
   inform-key: '&7Informe a &6&lKEY&7. &c/Ativar <key>'
   active-key: '&7Ocorreu um erro ao ativar o &6&lVIP&7, tente novamente!'
   invalid-key: '&c&l[MineCart] KEY INVALIDA\n        &7A key que você tentou ativar é invalida!'
