@@ -9,7 +9,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -50,21 +49,15 @@ public class ResgatarCashCommand implements CommandExecutor {
 			JsonElement StatusAPI = jsonObject.get("status");
 			
 			if(StatusAPI.getAsInt() == 200){
-				JsonArray productsPlayer = jsonObject.getAsJsonArray("products");
+				int cashAmount = jsonObject.get("cash").getAsInt();
 				
-				for (JsonElement product : productsPlayer){
-					JsonObject productObj = product.getAsJsonObject();
-					
-					Integer quantity = productObj.get("quantity").getAsInt();
-					
+				if(cashAmount > 0){
 					String cmdTemp = MineCart.instance.getConfig().getString("cmd.cmd_active_cash");
 					
 					cmdTemp = cmdTemp.replace("{player.name}", player.getName());
-					cmdTemp = cmdTemp.replace("{cash.quantity}", String.valueOf(quantity));
+					cmdTemp = cmdTemp.replace("{cash.quantity}", String.valueOf(cashAmount));
 					
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmdTemp);
-					
-					if(!getAnyoneProdct) getAnyoneProdct = true;
 				}
 				
 				if(getAnyoneProdct){
