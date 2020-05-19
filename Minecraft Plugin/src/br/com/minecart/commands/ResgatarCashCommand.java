@@ -52,6 +52,8 @@ public class ResgatarCashCommand implements CommandExecutor {
 				int cashAmount = jsonObject.get("cash").getAsInt();
 				
 				if(cashAmount > 0){
+					if(!getAnyoneProdct) getAnyoneProdct = true;
+					
 					String cmdTemp = MineCart.instance.getConfig().getString("cmd.cmd_active_cash");
 					
 					cmdTemp = cmdTemp.replace("{player.name}", player.getName());
@@ -71,7 +73,7 @@ public class ResgatarCashCommand implements CommandExecutor {
 				}
 			}
 		} catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		
 		player.sendMessage(Messaging.format("error.nothing-products-cash", true, true));

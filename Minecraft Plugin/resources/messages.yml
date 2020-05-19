@@ -2,7 +2,7 @@ success:
   player-list-keys-title: '&6Central de keys VIPs:'
   player-list-keys-key: '&b{key.code} - &6&l{key.group} &a&l{key.duration} DIAS'
   redeem-vip: '&7Parabéns &6{player.name}&7, para ver seus &6&lVIPS &7digite &c/MinhasKeys&7.'
-  redeem-vip: '&7Parabéns &6{player.name}&7, para ver seu saudo de &6&lCASH &7digite &c/Cash&7.'
+  redeem-cash: '&7Parabéns &6{player.name}&7, para ver seu saldo de &6&lCASH &7digite &c/Cash&7.'
   active-key:
   - '&7Parabens &6{player.name}&7, você ativou um &6&lVIP&7!'
   - '&7Você ativou o &6&lVIP {key.group} &7com duração de &a&l{key.duration} DIAS&7.'
