@@ -9,7 +9,8 @@ success:
 
 error:
   internal-error: '&cOcorreu um erro interno, entre em contato com um administrador!'
-  redeem-vip: '&7Ocorreu um erro ao obter o &6&lVIP {key.group} &7com duração de &a&l{key.duration} DIAS&7, entre em contato com a administração!'
+  redeem-vip: '&7Ocorreu um erro ao obter o &6&lVIP {key.group} &7com duração de &a&l{key.duration} DIAS&7.'
+  redeem-cash: '&7Ocorreu um erro ao obter o &a&l{cash.amount} &7de &6&lCASH&7.'
   clean-inventory: '&7Limpe o inventario para poder executar este comando.'
   player-only: '&cApenas Jogadores podem utilizar este comando!'
   player-dont-have-key: '&cVocê não possui nenhuma KEY.'

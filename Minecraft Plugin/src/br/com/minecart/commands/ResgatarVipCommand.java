@@ -68,9 +68,10 @@ public class ResgatarVipCommand implements CommandExecutor {
 							msg = msg.replace("{key.group}", group);
 							msg = msg.replace("{key.duration}", String.valueOf(quantity));
 							
+							player.sendMessage(Messaging.format("error.internal-error", true, true));
 							player.sendMessage(Messaging.format(msg, true, false));
 							
-							LOGStorage.resgatarVIP("[ERROR] Ocorreu um erro ao dar o VIP ( "+ group +" ) com duração de ( " + duration + " ) DIAS.");
+							LOGStorage.resgatarVIP("[ERROR] Ocorreu um erro ao dar o VIP ( "+ group +" ) com duração de ( " + duration + " ) DIAS para o jogador ( " + player.getName() + " ).");
 						}
 					}
 				}

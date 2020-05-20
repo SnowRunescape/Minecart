@@ -8,7 +8,9 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import br.com.minecart.storage.LOGStorage;
 import br.com.minecart.storage.SQLStorage;
+import br.com.minecart.utilities.Messaging;
 
 public class MineCartKeyManage {
 	private HashMap<String, MineCartKey> minecartKeys = new HashMap<String, MineCartKey>();
@@ -48,11 +50,25 @@ public class MineCartKeyManage {
 			cmd = cmd.replace("{player.name}", player.getName());
 			
 			if(this.SQLStorage.deleteMineCartKey(minecartKey)){
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
-				
-				this.minecartKeys.remove(key);
-				
-				return true;
+				if(Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd)){
+					this.minecartKeys.remove(key);
+					
+					return true;
+				} else {
+					if(!this.SQLStorage.saveMineCartKey(minecartKey)){
+						this.minecartKeys.remove(key);
+						
+						String msg = MineCart.instance.ResourceMessage.getString("error.redeem-vip");
+						
+						msg = msg.replace("{key.group}", minecartKey.getGrup());
+						msg = msg.replace("{key.duration}", String.valueOf(minecartKey.getDuration()));
+						
+						player.sendMessage(Messaging.format("error.internal-error", true, true));
+						player.sendMessage(Messaging.format(msg, true, false));
+						
+						LOGStorage.resgatarVIP("[ERROR] Ocorreu um erro ao ATIVAR o VIP ( "+ minecartKey.getGrup() +" ) com duração de ( " + String.valueOf(minecartKey.getDuration()) + " ) DIAS para o jogador ( " + player.getName() + " ).");
+					}
+				}
 			}
 		}
 		

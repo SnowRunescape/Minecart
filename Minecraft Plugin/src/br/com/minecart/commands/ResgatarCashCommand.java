@@ -14,6 +14,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import br.com.minecart.MineCart;
+import br.com.minecart.storage.LOGStorage;
 import br.com.minecart.utilities.HttpRequest;
 import br.com.minecart.utilities.Messaging;
 
@@ -59,7 +60,18 @@ public class ResgatarCashCommand implements CommandExecutor {
 					cmdTemp = cmdTemp.replace("{player.name}", player.getName());
 					cmdTemp = cmdTemp.replace("{cash.quantity}", String.valueOf(cashAmount));
 					
-					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmdTemp);
+					if(!Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmdTemp)){
+						String msg = MineCart.instance.ResourceMessage.getString("error.redeem-cash");
+						
+						msg = msg.replace("{cash.amount}", String.valueOf(cashAmount));
+						
+						player.sendMessage(Messaging.format("error.internal-error", true, true));
+						player.sendMessage(Messaging.format(msg, true, false));
+						
+						LOGStorage.resgatarCASH("[ERROR] Ocorreu um erro ao dar ( "+ String.valueOf(cashAmount) +" ) de CASH para o jogador ( " + player.getName() + " ).");
+						
+						return true;
+					}
 				}
 				
 				if(getAnyoneProdct){
