@@ -1,5 +1,5 @@
 <?php
-class MineCart {
+class Minecart {
 	private static $shopToken;
 	
 	/*
