@@ -1,19 +1,18 @@
-name: MineCart
-version: 1.0
-description: Plugin Para Gerenciar as Keys Vips e Cash Comparado Pelo Sistema MineCart
+name: Minecart
+version: 2.0.0
+description: plugin responsible for managing the payment orders made by the Minecart
 author: [SnowRunescape]
 website: https://minecart.com.br
 
-main: br.com.minecart.MineCart
+main: br.com.minecart.Minecart
 
 commands:
-    MineCart:
-        description: Lista de comandos do administrador
-    MinhasKeys:
-        description: Lista Com Todas as Keys Vip Disponivel Para Ativar
-    Ativar:
-        description: Ativar Algum Vip Resgatado da MineCart
-    ResgatarVip:
-        description: Resgatar Vip da MineCart
-    ResgatarCash:
-        description: Resgatar Cash da MineCart
+    mykeys:
+        description: list with all the vip keys the player has to activate
+        aliases: [minhaskeys]
+    redeemcash:
+        description: redeem cash purchased
+        aliases: [resgatarcash]
+    redeemvip:
+        description: redeem vip purchased
+        aliases: [resgatarvip]

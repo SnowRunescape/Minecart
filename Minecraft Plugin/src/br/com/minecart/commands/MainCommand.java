@@ -1,5 +1,6 @@
 package br.com.minecart.commands;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.command.Command;
@@ -9,17 +10,23 @@ import org.bukkit.entity.Player;
 
 import com.google.common.collect.Maps;
 
+import br.com.minecart.Cooldown;
 import br.com.minecart.utilities.Messaging;
 
 public class MainCommand implements CommandExecutor {
-	private Map<String, CommandExecutor> CommandMap = Maps.newHashMap();
+	private static HashMap<Player, Cooldown> cooldown = new HashMap<Player, Cooldown>();
+	
+	private static Map<String, CommandExecutor> CommandMap = Maps.newHashMap();
 	
 	public MainCommand(){
-		CommandMap.put("minecart", new MineCartCommand());
-		CommandMap.put("minhaskeys", new MinhasKeysCommand());
-		CommandMap.put("ativar", new AtivarCommand());
-		CommandMap.put("resgatarvip", new ResgatarVipCommand());
-		CommandMap.put("resgatarcash", new ResgatarCashCommand());
+		CommandMap.put("mykeys", new MyKeys());
+		CommandMap.put("minhaskeys", new MyKeys());
+		
+		CommandMap.put("redeemcash", new RedeemCash());
+		CommandMap.put("resgatarcash", new RedeemCash());
+		
+		CommandMap.put("resgatarvip", new RedeemVip());
+		CommandMap.put("resgatarvip", new RedeemVip());
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
@@ -35,19 +42,25 @@ public class MainCommand implements CommandExecutor {
 		 if(CommandMap.containsKey(commandLabel)){
 			 CommandExecutor command = CommandMap.get(commandLabel);
 			 
-		        if(!hasPermission(player, command)){
-		            player.sendMessage(Messaging.format("error.insufficient-permissions", true, true));
-		            
-		            return true;
-		        }
-
-		        return command.onCommand(sender, cmd, commandLabel, args);
+			 if(!hasPermission(player, command)){
+				 player.sendMessage(Messaging.format("error.insufficient-permissions", true, true));
+				 
+				 return true;
+			 }
+			 
+			 if(this.inCooldown(player, commandLabel)){
+				 player.sendMessage(Messaging.format("error.cooldown", true, true));
+			 } else {
+				 this.addCooldown(player, commandLabel);
+				 
+				 return command.onCommand(sender, cmd, commandLabel, args);
+			 }
 		 }
 		
 		return false;
 	}
 	
-	private boolean hasPermission(Player bukkitPlayer, CommandExecutor cmd) {
+	private boolean hasPermission(Player bukkitPlayer, CommandExecutor cmd){
 		CommandPermissions permissions = cmd.getClass().getAnnotation(CommandPermissions.class);
 		
         if(permissions == null) return true;
@@ -60,4 +73,24 @@ public class MainCommand implements CommandExecutor {
 
         return false;
     }
+	
+	private boolean inCooldown(Player player, String commandLabel){
+		if(cooldown.containsKey(player)){
+			Cooldown Cooldown = cooldown.get(player);
+			
+			return Cooldown.inCooldown(commandLabel);
+		}
+		
+		return false;
+	}
+	
+	private void addCooldown(Player player, String commandLabel){
+		if(!cooldown.containsKey(player)){
+			cooldown.put(player, new Cooldown());
+		}
+		
+		Cooldown Cooldown = cooldown.get(player);
+		
+		Cooldown.addCooldown(commandLabel, 5);
+	}
 }

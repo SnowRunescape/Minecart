@@ -2,7 +2,7 @@ package br.com.minecart.utilities;
 
 import org.bukkit.ChatColor;
 
-import br.com.minecart.MineCart;
+import br.com.minecart.Minecart;
 
 public class Messaging {
 	public static String format(String message, Boolean usePrefix, Boolean getConfigMessage){
@@ -10,13 +10,13 @@ public class Messaging {
 		
 		if(message == null || message.isEmpty()) return "";
 		 
-		if(usePrefix) newMessage += MineCart.instance.getConfig().getString("prefix", "&b[MineCart] ");
+		if(usePrefix) newMessage += Minecart.instance.getConfig().getString("config.prefix", "&b[Minecart] ");
 		
 		 if(getConfigMessage){
-			 if(MineCart.instance.ResourceMessage.getString(message) != null){
-				 newMessage += MineCart.instance.ResourceMessage.getString(message);
+			 if(Minecart.instance.ResourceMessage.getString(message) != null){
+				 newMessage += Minecart.instance.ResourceMessage.getString(message);
 			 } else {
-				 newMessage = "§b[MineCart] §c" + message + " Not Found.";
+				 newMessage = "&b[Minecart] &c" + message + " Not Found.";
 			 }
 		 } else {
 			 newMessage += message;

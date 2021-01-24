@@ -1,20 +1,15 @@
-# MineCart 1.0
+# Minecart 2.0.0
 # Plugin Feito Pela SnowDev
 # Site https://minecart.com.br
 
-MineCart:
+Minecart:
   ShopKey: 'minecart_shop_key_api'
   ShopServer: 'minecart_server_name'
 
-prefix: '&b[MineCart] '
-
-database:
-  hostname: 'localhost'
-  port: 3306
-  username: 'username'
-  password: 'password'
-  database: 'database'
+config:
+  force_clean_inventry: true
+  prefix: '&b[Minecart] '
 
 cmd:
-  cmd_active_vip: 'gerarvip {key.group} {key.duration} {player.name}'
+  cmd_active_vip: 'darvip {player.name} {key.group} {key.duration}'
   cmd_active_cash: 'cash give {player.name} {cash.quantity}'

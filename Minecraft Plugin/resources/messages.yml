@@ -9,6 +9,9 @@ success:
 
 error:
   internal-error: '&cOcorreu um erro interno, entre em contato com um administrador!'
+  invalid-shopkey: '&cO &6&lShopKey &cconfigurado é invalido, entre em contato com um administrador!'
+  invalid-shopserver: '&cO &6&lShopServer &cconfigurado é invalido, entre em contato com um administrador!'
+  cooldown: '&cAguarde um pouco para usar esse comando novamente!'
   redeem-vip: '&7Ocorreu um erro ao obter o &6&lVIP {key.group} &7com duração de &a&l{key.duration} DIAS&7.'
   redeem-cash: '&7Ocorreu um erro ao obter o &a&l{cash.amount} &7de &6&lCASH&7.'
   clean-inventory: '&7Limpe o inventario para poder executar este comando.'
@@ -18,4 +21,4 @@ error:
   nothing-products-cash: '&cVocê não possui &6&lCASH &cpara ser resgatado!'
   inform-key: '&7Informe a &6&lKEY&7. &c/Ativar <key>'
   active-key: '&7Ocorreu um erro ao ativar o &6&lVIP&7, tente novamente!'
-  invalid-key: '&c&l[MineCart] KEY INVALIDA\n        &7A key que você tentou ativar é invalida!'
+  invalid-key: '&c&l[Minecart] KEY INVALIDA\n        &7A key que você tentou ativar é invalida!'

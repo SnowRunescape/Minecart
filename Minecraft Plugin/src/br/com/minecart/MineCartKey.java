@@ -1,32 +1,25 @@
 package br.com.minecart;
 
-public class MineCartKey {
-	private String owner;
-	private String code;
+public class MinecartKey {
+	private String key;
 	private String group;
+	private int duration;
 	
-	private Integer duration;
-	
-	public MineCartKey(String owner, String code, String group, Integer duration){
-		this.owner = owner;
-		this.code = code;
+	public MinecartKey(String key, String group, int duration){
+		this.key = key;
 		this.group = group;
 		this.duration = duration;
 	}
 	
-	public String getOwner(){
-		return this.owner;
+	public String getKey(){
+		return this.key;
 	}
 	
-	public String getCode(){
-		return this.code;
-	}
-	
-	public String getGrup(){
+	public String getGroup(){
 		return this.group;
 	}
 	
-	public Integer getDuration(){
+	public int getDuration(){
 		return this.duration;
 	}
 }
