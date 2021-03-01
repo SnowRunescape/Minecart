@@ -47,7 +47,7 @@ class Minecart {
 			CURLOPT_URL            => $url,
 			CURLOPT_HTTPHEADER     => $httpHeader,
 			CURLOPT_CUSTOMREQUEST  => $customRequest,
-			CURLOPT_POSTFIELDS	   => $postFields,
+			CURLOPT_POSTFIELDS     => $postFields,
 			CURLOPT_RETURNTRANSFER => 1,
 			CURLOPT_FOLLOWLOCATION => 1,
 			CURLOPT_VERBOSE        => 0,
