@@ -1,0 +1,5 @@
+name: Minecart
+version: 1.0.0
+author: Angelo @Th3Ang3lo
+api: ["3.12.2", "3.12.3"]
+main: Minecart\Minecart
