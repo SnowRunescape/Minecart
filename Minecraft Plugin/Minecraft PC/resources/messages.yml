@@ -19,6 +19,6 @@ error:
   player-dont-have-key: '&cVocê não possui nenhuma KEY.'
   nothing-products-vip: '&cVocê não possui nenhum &6&lVIP &cpara ser resgatado!'
   nothing-products-cash: '&cVocê não possui &6&lCASH &cpara ser resgatado!'
-  inform-key: '&7Informe a &6&lKEY&7. &c/Ativar <key>'
+  inform-key: '&7Informe a &6&lKEY&7. &c/resgatarvip <key>'
   active-key: '&7Ocorreu um erro ao ativar o &6&lVIP&7, tente novamente!'
   invalid-key: '&c&l[Minecart] KEY INVALIDA\n        &7A key que você tentou ativar é invalida!'
