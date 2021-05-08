@@ -65,7 +65,7 @@ class Form {
         });
 
         $form->setTitle($this->title);
-        $form->setContent(PHP_EOL . PHP_EOL . $this->message . PHP_EOL . PHP_EOL);
+        $form->setContent($this->message);
         $form->addButton('Fechar');
         $player->sendForm($form);
     }
