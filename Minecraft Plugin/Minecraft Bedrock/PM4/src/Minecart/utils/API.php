@@ -6,7 +6,7 @@ class API {
     private $authorization;
     private $shopServer;
 
-    const URI = 'https://minecart.com.br/api';
+    const URI = 'https://api.minecart.com.br';
     const MYKEYS_URI = self::URI . '/shop/player/mykeys';
     const REDEEMVIP_URI = self::URI . '/shop/player/redeemvip';
     const REDEEMCASH_URI = self::URI . '/shop/player/redeemcash';
