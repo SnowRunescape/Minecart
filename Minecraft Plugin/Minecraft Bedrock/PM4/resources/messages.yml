@@ -1,0 +1,35 @@
+waiting-response-info: '§7Aguardando resposta...'
+
+modal:
+  title: 'Tem certeza?'
+  confirm-vip-message: '§7Caso aperte em §aSIM§7, será verificado se esta key §aVIP §7é válida. Se for válida, a key será ativada em sua conta e §cnão§7 poderá ser reutilizada novamente!'
+  confirm-cash-message: '§7Caso aperte em §aSIM§7, será verificado se você possui algum §ecash §7para ativação. Caso possua, todo os §ecash §7que você comprou sera ativado em sua conta.'
+
+form:
+  title: 'Resgatar VIP'
+  placeholder: '§7Insira sua key'
+
+success:
+  player-list-keys-title: 'Central de keys VIPs'
+  player-list-keys-key: '§b{key} §7- §a{group} §a{duration} dias'
+  redeem-vip: '§7Parabéns §e{player}§7, para ver seus §aVIPS §7digite §c/MinhasKeys§7.'
+  redeem-cash: '§7Parabéns §e{player}§7, para ver seu saldo de §aCASH §7digite §e/cash§7.'
+  active-key: '§7Parabens §e{player}§7, você ativou o §aVIP {group} §7com duração de §a{duration} dias§7.'
+  global-info-title: '§e{player}'
+  global-info-subtitle-vip: '§7Tornou-se §a{group}'
+  global-info-subtitle-cash: '§7ativou §a{cash} §7de cash'
+
+error:
+  internal-error: '§cOcorreu um erro interno, entre em contato com um administrador!'
+  invalid-shopkey: '§cO §6ShopKey §cconfigurado é invalido, entre em contato com um administrador!'
+  invalid-shopserver: '§7O §6ShopServer §cconfigurado é invalido, entre em contato com um administrador!'
+  cooldown: '§cAguarde {cooldown} segundos e tente novamente'
+  redeem-vip: '§7Ocorreu um §cerro §7ao obter o §aVIP {group} §7com duração de §a{duration} dias§7.'
+  redeem-cash: '§7Ocorreu um erro ao obter §a{cash} §7de §eCASH§7.'
+  player-only: '§cApenas jogadores podem utilizar este comando!'
+  player-dont-have-key: '§cVocê não possui nenhuma KEY.'
+  nothing-products-vip: '§7Você não possui nenhum §aVIP §7para ser resgatado!'
+  nothing-products-cash: '§7Você não possui §aCASH §7para ser resgatado!'
+  inform-key: '§cInforme a key'
+  active-key: '§7Ocorreu um erro ao ativar o §aVIP§7, tente novamente!'
+  invalid-key: '§cKey inválida ou inexistente'
