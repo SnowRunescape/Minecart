@@ -4,6 +4,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-@interface CommandPermissions {
+@interface CommandPermissions
+{
     public abstract String[] value();
 }
