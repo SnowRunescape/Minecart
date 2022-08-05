@@ -3,8 +3,6 @@ package br.com.minecart.utilities;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import br.com.minecart.Minecart;
-
 public class Utils
 {
     public static Boolean playerInventoryClean(Player player)

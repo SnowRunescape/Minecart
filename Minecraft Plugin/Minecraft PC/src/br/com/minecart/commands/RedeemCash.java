@@ -20,7 +20,8 @@ import br.com.minecart.utilities.Messaging;
 
 public class RedeemCash implements CommandExecutor
 {
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
+    {
         Player player = (Player) sender;
 
         Map<String, String> params = new LinkedHashMap<String, String>();

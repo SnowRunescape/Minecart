@@ -21,6 +21,8 @@ public class MainCommand implements CommandExecutor
 
     public MainCommand()
     {
+        CommandMap.put("minecart", new Minecart());
+
         CommandMap.put("mykeys", new MyKeys());
         CommandMap.put("minhaskeys", new MyKeys());
 

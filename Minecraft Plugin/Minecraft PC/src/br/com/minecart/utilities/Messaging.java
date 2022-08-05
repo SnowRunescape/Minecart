@@ -11,11 +11,11 @@ public class Messaging
         String newMessage = "";
 
         if (message == null || message.isEmpty()) {
-            return ""
+            return "";
         };
 
         if (usePrefix) {
-            newMessage += Minecart.instance.getConfig().getString("config.prefix", "&b[Minecart] ")
+            newMessage += Minecart.instance.getConfig().getString("config.prefix", "&b[Minecart] ");
         };
 
         if (getConfigMessage) {
