@@ -38,9 +38,9 @@ public class MyKeys implements CommandExecutor
         }
 
         try {
-            JsonParser JsonParser = new JsonParser();
+            JsonParser jsonParser = new JsonParser();
 
-            JsonObject jsonObject = JsonParser.parse(response.response).getAsJsonObject();
+            JsonObject jsonObject = jsonParser.parse(response.response).getAsJsonObject();
 
             if (response.responseCode == 200) {
                 ArrayList<MinecartKey> minecartKeys = new ArrayList<MinecartKey>();
@@ -54,13 +54,13 @@ public class MyKeys implements CommandExecutor
                     String group = productObj.get("group").getAsString();
                     Integer duration = productObj.get("duration").getAsInt();
 
-                    minecartKeys.add(new MinecartKey(key, group, duration));
+                    minecartKeys.add(new MinecartKey(key, group, duration, null));
                 }
 
                 player.sendMessage(Messaging.format("success.player-list-keys-title", false, true));
                 player.sendMessage("");
 
-                if (minecartKeys.size() > 0) {
+                if (!minecartKeys.isEmpty()) {
                     for(MinecartKey minecartKey : minecartKeys){
                         String msg = Minecart.instance.ResourceMessage.getString("success.player-list-keys-key");
 
@@ -90,13 +90,13 @@ public class MyKeys implements CommandExecutor
                 player.sendMessage(Messaging.format("error.invalid-shopkey", false, true));
             } else {
                 try {
-                    JsonParser JsonParser = new JsonParser();
+                    JsonParser jsonParser = new JsonParser();
 
-                    JsonObject jsonObject = JsonParser.parse(response.response).getAsJsonObject();
+                    JsonObject jsonObject = jsonParser.parse(response.response).getAsJsonObject();
 
-                    Integer error_code = jsonObject.get("code").getAsInt();
+                    Integer errorCode = jsonObject.get("code").getAsInt();
 
-                    if (error_code == 40011) {
+                    if (errorCode == 40011) {
                         player.sendMessage(Messaging.format("error.invalid-shopserver", false, true));
                     } else {
                         player.sendMessage(Messaging.format("error.internal-error", false, true));

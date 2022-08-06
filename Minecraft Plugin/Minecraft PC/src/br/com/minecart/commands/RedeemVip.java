@@ -54,14 +54,16 @@ public class RedeemVip implements CommandExecutor
         }
 
         try {
-            JsonParser JsonParser = new JsonParser();
+            JsonParser jsonParser = new JsonParser();
 
-            JsonObject jsonObject = JsonParser.parse(response.response).getAsJsonObject();
+            JsonObject jsonObject = jsonParser.parse(response.response).getAsJsonObject();
 
             if (response.responseCode == 200) {
                 String group = jsonObject.get("group").getAsString();
                 Integer duration = jsonObject.get("duration").getAsInt();
-                MinecartKey minecartKey = new MinecartKey(key, group, duration);
+                String[] commands = Utils.convertJsonArrayToStringArray(jsonObject.get("commands").getAsJsonArray());
+
+                MinecartKey minecartKey = new MinecartKey(key, group, duration, commands);
 
                 this.deliverVip(player, minecartKey);
             } else {
