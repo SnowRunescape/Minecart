@@ -7,6 +7,9 @@ website: https://minecart.com.br
 main: br.com.minecart.Minecart
 
 commands:
+    minecart:
+        description: list version and commands
+        aliases: []
     mykeys:
         description: list with all the vip keys the player has to activate
         aliases: [minhaskeys]

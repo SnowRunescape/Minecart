@@ -35,6 +35,7 @@ public class Minecart extends JavaPlugin
 
         MainCommand MainCommand = new MainCommand();
 
+        getCommand("minecart").setExecutor(MainCommand);
         getCommand("mykeys").setExecutor(MainCommand);
         getCommand("redeemcash").setExecutor(MainCommand);
         getCommand("redeemvip").setExecutor(MainCommand);

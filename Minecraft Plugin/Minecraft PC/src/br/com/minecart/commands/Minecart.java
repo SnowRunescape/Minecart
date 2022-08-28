@@ -10,28 +10,34 @@ public class Minecart implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
         if (args.length == 0) {
-            this.listCommands(sender);
-        } else if (args[0] == "reload") {
-            this.reloadConfig();
+            return this.listCommands(sender);
+        } else if (args[0].equalsIgnoreCase("reload")) {
+            return this.reloadConfig(sender);
         }
+
+        sender.sendMessage("§9[Minecart] §cComando Inexistente");
 
         return false;
     }
 
-    private void listCommands(CommandSender sender)
+    private boolean listCommands(CommandSender sender)
     {
-        sender.sendMessage("[Minecart] version [§9" + br.com.minecart.Minecart.instance.VERSION + "§f]");
+        sender.sendMessage("§9[Minecart] §fVersion [§c" + br.com.minecart.Minecart.instance.VERSION + "§f]");
 
-        if ((sender instanceof Player) && !sender.hasPermission("minecart.admin")) {
-            return;
+        if ((sender instanceof Player) && sender.hasPermission("minecart.admin")) {
+            sender.sendMessage("");
+            sender.sendMessage("§b/Minecart reload §f- Recarregar configurações");
         }
 
-        sender.sendMessage("");
-        sender.sendMessage("/Minecart reload - recarregar configurações");
+        return true;
     }
 
-    private void reloadConfig()
+    private boolean reloadConfig(CommandSender sender)
     {
+        sender.sendMessage("§9[Minecart] §fConfigurações recarregadas com sucesso");
+
         br.com.minecart.Minecart.instance.reloadConfig();
+
+        return true;
     }
 }

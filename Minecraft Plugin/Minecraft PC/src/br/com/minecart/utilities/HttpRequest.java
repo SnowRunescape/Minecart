@@ -37,7 +37,7 @@ public class HttpRequest
         return postData.toString();
     }
 
-    public static HttpResponse httpRequest(String Url, Map<String, String> params)
+    public static HttpResponse httpRequest(String Url, Map<String, String> params) throws HttpRequestException
     {
         String response = null, urlParameters = null;
 
@@ -87,13 +87,11 @@ public class HttpRequest
 
             br.close();
 
-            response = sb.toString().replaceAll("\\s+"," ");
+            response = sb.toString().replaceAll("\\s+", " ");
 
             return new HttpResponse(connection.getResponseCode(), response);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new HttpRequestException(new HttpResponse(500, ""));
         }
-
-        return null;
     }
 }

@@ -15,6 +15,8 @@ import br.com.minecart.utilities.Messaging;
 
 public class MainCommand implements CommandExecutor
 {
+    private static final  int COOLDOWN = 5;
+
     private static HashMap<Player, Cooldown> cooldown = new HashMap<Player, Cooldown>();
 
     private static Map<String, CommandExecutor> CommandMap = Maps.newHashMap();
@@ -29,7 +31,7 @@ public class MainCommand implements CommandExecutor
         CommandMap.put("redeemcash", new RedeemCash());
         CommandMap.put("resgatarcash", new RedeemCash());
 
-        CommandMap.put("resgatarvip", new RedeemVip());
+        CommandMap.put("redeemvip", new RedeemVip());
         CommandMap.put("resgatarvip", new RedeemVip());
     }
 
@@ -37,8 +39,7 @@ public class MainCommand implements CommandExecutor
     {
         if (!(sender instanceof Player)) {
             sender.sendMessage(Messaging.format("error.player-only", true, true));
-
-            return true;
+            return false;
         }
 
         Player player = (Player) sender;
@@ -49,12 +50,12 @@ public class MainCommand implements CommandExecutor
 
             if (!hasPermission(player, command)) {
                 player.sendMessage(Messaging.format("error.insufficient-permissions", true, true));
-
-                return true;
+                return false;
             }
 
             if (this.inCooldown(player, commandLabel)) {
                 player.sendMessage(Messaging.format("error.cooldown", true, true));
+                return false;
             } else {
                 this.addCooldown(player, commandLabel);
 
@@ -62,7 +63,7 @@ public class MainCommand implements CommandExecutor
             }
         }
 
-        return false;
+        return true;
     }
 
     private boolean hasPermission(Player bukkitPlayer, CommandExecutor cmd)
@@ -101,6 +102,6 @@ public class MainCommand implements CommandExecutor
 
         Cooldown Cooldown = cooldown.get(player);
 
-        Cooldown.addCooldown(commandLabel, 5);
+        Cooldown.addCooldown(commandLabel, COOLDOWN);
     }
 }
