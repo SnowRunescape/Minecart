@@ -9,8 +9,6 @@ import br.com.minecart.commands.MainCommand;
 
 public class Minecart extends JavaPlugin
 {
-    public final String MINECART_API = "https://api.minecart.com.br";
-
     public final String VERSION = "2.1.0";
 
     public YamlConfiguration ResourceMessage;
