@@ -22,7 +22,10 @@ public class MinecartAPI extends JavaPlugin
 {
     private final static String URL = "https://api.minecart.com.br";
 
+    private final static int INVALID_KEY = 40010;
     private final static int INVALID_SHOP_SERVER = 40011;
+    private final static int DONT_HAVE_CASH = 40012;
+    private final static int COMMANDS_NOT_REGISTRED = 40013;
 
     public static ArrayList<MinecartKey> myKeys(Player player) throws Exception
     {
@@ -99,6 +102,7 @@ public class MinecartAPI extends JavaPlugin
             return;
         } else if (response.responseCode == 401) {
             player.sendMessage(Messaging.format("error.invalid-shopkey", false, true));
+            return;
         }
 
         try {
@@ -107,13 +111,17 @@ public class MinecartAPI extends JavaPlugin
 
             Integer errorCode = jsonObject.get("code").getAsInt();
 
-            if (errorCode == 40010) {
+            if (errorCode == INVALID_KEY) {
                 String kickMessage = Messaging.format("error.invalid-key", true, true);
                 kickMessage = kickMessage.replace("\\n", "\n");
 
                 player.kickPlayer(kickMessage);
             } else if (errorCode == INVALID_SHOP_SERVER) {
                 player.sendMessage(Messaging.format("error.invalid-shopserver", false, true));
+            } else if (errorCode == DONT_HAVE_CASH) {
+                player.sendMessage(Messaging.format("error.nothing-products-cash", false, true));
+            } else if (errorCode == COMMANDS_NOT_REGISTRED) {
+                player.sendMessage(Messaging.format("error.commands-product-not-registred", false, true));
             } else {
                 player.sendMessage(Messaging.format("error.internal-error", false, true));
             }
