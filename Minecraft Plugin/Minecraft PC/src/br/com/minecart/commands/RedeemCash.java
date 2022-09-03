@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import br.com.minecart.Minecart;
 import br.com.minecart.MinecartAPI;
+import br.com.minecart.MinecartCash;
 import br.com.minecart.storage.LOGStorage;
 import br.com.minecart.utilities.HttpRequestException;
 import br.com.minecart.utilities.Messaging;
@@ -19,10 +20,10 @@ public class RedeemCash implements CommandExecutor
         Player player = (Player) sender;
 
         try {
-            int quantity= MinecartAPI.redeemCash(player);
+            MinecartCash minecartCash = MinecartAPI.redeemCash(player);
 
-            if (quantity > 0) {
-                this.deliverCash(player, quantity);
+            if (minecartCash.getQuantity() > 0) {
+                return this.deliverCash(player, minecartCash);
             }
         } catch(HttpRequestException e) {
             MinecartAPI.processHttpError(player, e.getResponse());
@@ -31,28 +32,34 @@ public class RedeemCash implements CommandExecutor
         return false;
     }
 
-    private void deliverCash(Player player, int quantity)
+    private boolean deliverCash(Player player, MinecartCash minecartCash)
     {
-        String cmdTemp = Minecart.instance.getConfig().getString("cmd.cmd_active_cash");
+        String command = this.parseText(minecartCash.getCommand(), player , minecartCash);
 
-        cmdTemp = cmdTemp.replace("{player.name}", player.getName());
-        cmdTemp = cmdTemp.replace("{cash.quantity}", String.valueOf(quantity));
-
-        if (Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmdTemp)) {
+        if (Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command)) {
             String msg = Minecart.instance.ResourceMessage.getString("success.redeem-cash");
-
-            msg = msg.replace("{player.name}", player.getName());
+            msg = this.parseText(msg, player , minecartCash);
 
             player.sendMessage(Messaging.format(msg, true, false));
+            return true;
         } else {
             String msg = Minecart.instance.ResourceMessage.getString("error.redeem-cash");
-
-            msg = msg.replace("{cash.amount}", String.valueOf(quantity));
+            msg = this.parseText(msg, player , minecartCash);
 
             player.sendMessage(Messaging.format("error.internal-error", true, true));
             player.sendMessage(Messaging.format(msg, true, false));
 
-            LOGStorage.resgatarCASH("[ERROR] Ocorreu um erro ao dar ( "+ String.valueOf(quantity) +" ) de CASH para o jogador ( " + player.getName() + " ).");
+            LOGStorage.resgatarCASH("[ERROR] Ocorreu um erro ao dar ( "+ String.valueOf(minecartCash.getQuantity()) +" ) de CASH para o jogador ( " + player.getName() + " ).");
+            return false;
         }
+    }
+
+    private String parseText(String text, Player player, MinecartCash minecartCash)
+    {
+        text = text.replace("{cash.quantity}", String.valueOf(minecartCash.getQuantity()));
+        text = text.replace("{cash.amount}", String.valueOf(minecartCash.getQuantity()));
+        text = text.replace("{player.name}", player.getName());
+
+        return text;
     }
 }

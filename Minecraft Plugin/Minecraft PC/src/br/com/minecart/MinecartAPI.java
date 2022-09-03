@@ -57,7 +57,7 @@ public class MinecartAPI extends JavaPlugin
         return minecartKeys;
     }
 
-    public static int redeemCash(Player player) throws HttpRequestException
+    public static MinecartCash redeemCash(Player player) throws HttpRequestException
     {
         Map<String, String> params = new LinkedHashMap<String, String>();
         params.put("username", player.getName());
@@ -70,7 +70,10 @@ public class MinecartAPI extends JavaPlugin
 
         JsonObject jsonObject = new JsonParser().parse(response.response).getAsJsonObject();
 
-        return jsonObject.get("cash").getAsInt();
+        int quantity = jsonObject.get("cash").getAsInt();
+        String command = jsonObject.get("command").getAsString();
+
+        return new MinecartCash(quantity, command);
     }
 
     public static MinecartKey redeemVip(Player player, String key) throws HttpRequestException
