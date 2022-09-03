@@ -1,4 +1,4 @@
-# Minecart 2.0.0
+# Minecart 2.1.0
 # Plugin Feito Pela SnowDev
 # Site https://minecart.com.br
 
@@ -9,7 +9,3 @@ Minecart:
 config:
   force_clean_inventry: true
   prefix: '&b[Minecart] '
-
-cmd:
-  cmd_active_vip: 'darvip {player.name} {key.group} {key.duration}'
-  cmd_active_cash: 'cash give {player.name} {cash.quantity}'

@@ -1,5 +1,5 @@
 name: Minecart
-version: 2.0.0
+version: 2.1.0
 description: plugin responsible for managing the payment orders made by the Minecart
 author: [SnowRunescape]
 website: https://minecart.com.br
@@ -7,6 +7,9 @@ website: https://minecart.com.br
 main: br.com.minecart.Minecart
 
 commands:
+    minecart:
+        description: list version and commands
+        aliases: []
     mykeys:
         description: list with all the vip keys the player has to activate
         aliases: [minhaskeys]
