@@ -27,7 +27,7 @@ public class RedeemVip implements CommandExecutor
             return false;
         }
 
-        if (Minecart.instance.getConfig().getBoolean("config.force_clean_inventry", true) && Utils.playerInventoryClean(player)) {
+        if (Minecart.instance.getConfig().getBoolean("config.force_clean_inventry", true) && !Utils.playerInventoryClean(player)) {
             player.sendMessage(Messaging.format("error.clean-inventory", true, true));
             return false;
         }
