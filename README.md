@@ -3,9 +3,9 @@ A <a href="https://minecart.com.br">Minecart</a> é uma plataforma SaaS, loja vi
 
 #### Você encontra codigo de nossos plugins nos seguintes repositorios:
 
-* <a href="https://github.com/SnowRunescape/MinecartMinecraft">Minecraft Java Edition</a>
-* <a href="https://github.com/SnowRunescape/MinecartPocketMine-PM3">Minecraft Bedrock PM3</a>
-* <a href="https://github.com/SnowRunescape/MinecartPocketMine-PM4">Minecraft Bedrock PM4</a>
+* [Minecraft Bedrock PM3](https://github.com/SnowRunescape/MinecartPocketMine-PM3)
+* [Minecraft Bedrock PM4](https://github.com/SnowRunescape/MinecartPocketMine-PM4)
+* [Minecraft Bedrock PM5](https://github.com/SnowRunescape/MinecartPocketMine-PM5)
 
 # Suporte
 Tem alguma duvida? entre em contato conosco pelo discord <a href="https://discord.snowdev.com.br">clicando aqui</a>.
