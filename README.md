@@ -6,6 +6,7 @@ A <a href="https://minecart.com.br">Minecart</a> é uma plataforma SaaS, loja vi
 * [Minecraft Bedrock PM3](https://github.com/SnowRunescape/MinecartPocketMine-PM3)
 * [Minecraft Bedrock PM4](https://github.com/SnowRunescape/MinecartPocketMine-PM4)
 * [Minecraft Bedrock PM5](https://github.com/SnowRunescape/MinecartPocketMine-PM5)
+* [Hytale]([https://github.com/SnowRunescape/MinecartPocketMine-PM5](https://github.com/SnowRunescape/minecart-hytale))
 
 # Suporte
 Tem alguma duvida? entre em contato conosco pelo discord <a href="https://discord.snowdev.com.br">clicando aqui</a>.
